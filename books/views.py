@@ -14,6 +14,9 @@ class BookList(generics.ListCreateAPIView):
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
+    def perform_create(self, serializer):
+        serializer.save(creator=self.request.user)
+
 class BookDetail(generics.RetrieveUpdateDestroyAPIView):
     """ Retrieve, update, or delete a book. """
     queryset = Book.objects.all()
