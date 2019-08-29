@@ -20,7 +20,6 @@ from books import views as books_views
 from users import views as user_views
 
 router = routers.DefaultRouter()
-router.register(r'books', books_views.BooksViewSet)
 router.register(r'groups', user_views.GroupViewSet)
 router.register(r'users', user_views.UserViewSet)
 
