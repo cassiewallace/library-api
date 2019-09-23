@@ -3,7 +3,7 @@ from books.models import Book
 from django.contrib.auth.models import User
 
 
-class BookSerializer(serializers.ModelSerializer):
+class BookSerializer(serializers.HyperlinkedModelSerializer):
     creator = serializers.ReadOnlyField(source='creator.username')
     
     class Meta:
