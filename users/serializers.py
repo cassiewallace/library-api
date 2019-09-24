@@ -3,8 +3,8 @@ from rest_framework import serializers
 from books.models import Book
 
 
-class UserSerializer(serializers.ModelSerializer):
-    books = serializers.PrimaryKeyRelatedField(many=True, queryset=Book.objects.all())
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    books = serializers.HyperlinkedRelatedField(many=True, view_name='book-detail', read_only=True)
 
     class Meta:
         model = User

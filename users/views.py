@@ -1,27 +1,22 @@
 from django.contrib.auth.models import User, Group
-from rest_framework import generics
 from users.serializers import UserSerializer, GroupSerializer
+from rest_framework import viewsets
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
 
 
-class UserList(generics.ListAPIView):
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class UserDetail(generics.RetrieveAPIView):
-    """
-    API endpoint that allows users to be viewed or edited
+    Provides `list` and `detail` actions for Users
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
-class GroupList(generics.ListAPIView):
+class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    API endpoint that allows groups to be viewed or edited
+    Provides `list` and `detail` actions for Groups
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
