@@ -4,11 +4,15 @@ from books.models import Book
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    books = serializers.HyperlinkedRelatedField(many=True, view_name='book-detail', read_only=True)
+    created_books = serializers.HyperlinkedRelatedField(many=True, 
+        view_name='book-detail', read_only=True)
+    checked_out_books = serializers.HyperlinkedRelatedField(many=True, 
+        view_name='book-detail', read_only=True)
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'groups', 'books']
+        fields = ['id', 'username', 'groups', 'created_books', 
+            'checked_out_books']
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
