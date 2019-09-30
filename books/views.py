@@ -26,10 +26,12 @@ class BookViewSet(viewsets.ModelViewSet):
         """Check out a book."""
         book = self.get_object()
 
-        book.checked_out_by = request.user
-        book.save()
-
-        return Response({'status': 'checked out'})
+        if book.checked_out_by == None:
+            book.checked_out_by = request.user
+            book.save()
+            return Response({'status': 'checked out'})
+        else:
+            return Response({'error': 'already checked out'})
 
     @action(detail=True, methods=['post'], 
         permission_classes=[IsAuthenticated], name='Check In')
@@ -37,7 +39,9 @@ class BookViewSet(viewsets.ModelViewSet):
         """Check in a book."""
         book = self.get_object()
 
-        book.checked_out_by = None
-        book.save()
-
-        return Response({'status': 'checked back in'})
+        if book.checked_out_by != None:
+            book.checked_out_by = None
+            book.save()
+            return Response({'status': 'checked back in'})
+        else:
+            return Response({'error': 'book was not checked out'})
