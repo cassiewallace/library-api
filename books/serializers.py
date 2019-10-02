@@ -1,7 +1,9 @@
 from django.db import models
-from rest_framework import serializers
-from books.models import Book
 from django.contrib.auth.models import User
+
+from rest_framework import serializers
+
+from books.models import Book
 
 
 class BookSerializer(serializers.HyperlinkedModelSerializer):
