@@ -1,5 +1,6 @@
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.exceptions import APIException
 
 
 def library_exception_handler(exception, context=None):
@@ -10,7 +11,6 @@ def library_exception_handler(exception, context=None):
 
 
 class LibraryError:
-
     def __init__(self, exception):
         self._exception = exception
         try:
