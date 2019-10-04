@@ -4,7 +4,11 @@ __pycache__/
 *$py.class
 "*.pyc"
 
-# Django stuff:
+# Django
 *.log
-local_settings.py
+
+# Database
 db.sqlite3
+
+# Development settings
+api/secret_key.txt
