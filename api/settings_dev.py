@@ -1,13 +1,13 @@
 import os
 
-import dj_database_url
-import psycopg2
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = os.environ['SECRET_KEY']
+with open('api/secret_key.txt') as f:
+    SECRET_KEY = f.read().strip()
 
-DEBUG = False
+DEBUG = True
+
+ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -54,24 +54,19 @@ WSGI_APPLICATION = 'api.wsgi.application'
 
 
 # Database
-DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
-# Deployment
+# Static files (CSS, JavaScript, Images)	
 
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER = True
-
-CSRF_COOKIE_SECURE = True
-X_FRAME_OPTIONS = 'DENY'
-
-ALLOWED_HOSTS = ['*']
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')	
+STATIC_URL = '/static/'	
 
 
 # Password validation
@@ -92,12 +87,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Static files (CSS, JavaScript, Images)	
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')	
-STATIC_URL = '/static/'	
-
-
 # Internationalization
 
 LANGUAGE_CODE = 'en-us'
@@ -110,13 +99,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'api.pagination.PageNumberPaginationDataOnly',
     'PAGE_SIZE': 10,
     'EXCEPTION_HANDLER': 'api.utils.library_exception_handler'
 }
-
-# Override production variables if DJANGO_DEVELOPMENT env variable is set
-# Note: Set it with `export DJANGO_SETTINGS_MODULE=api.settings_dev`
-if os.environ.get('DJANGO_DEVELOPMENT') is not None:
-    from settings_dev import * 
