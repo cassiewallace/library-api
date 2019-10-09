@@ -6,7 +6,13 @@ from rest_framework import serializers
 from books.models import Book
 
 
-class BookSerializer(serializers.HyperlinkedModelSerializer):
+class BasicBookSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Book
+        fields = ['id', 'title', 'author']
+
+class FullBookSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     checked_out_by = serializers.HyperlinkedRelatedField(view_name='user-detail',
         queryset=User.objects.all(), allow_null=True)
