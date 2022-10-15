@@ -17,4 +17,6 @@ Library API enables users to manage a set of books.
 
 ## Deploying to Heroku
 
-Run `git push heroku master` to create a new release on **library-api-cw** on Heroku.
+This repository is set up to deploy automatically via [Heroku](https://dashboard.heroku.com/apps/library-api-cw).
+
+If needed, run `git push heroku master` to create a new release on **library-api-cw** on Heroku.
