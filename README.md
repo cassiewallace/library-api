@@ -2,12 +2,19 @@
 
 Library API enables users to manage a set of books.
 
-## Requirements
+## Documentation
+- [Postman Workspace](https://www.postman.com/cassiewallace/workspace/library-api)
 
-Built using Python 3.7.4 and Django 2.2.4.
+## Requirements
+- Python: `3.10.8`
+- Django: `2.2.4`
 
 ## Running the API locally
 
 1. Install the requirements with `pip install -r requirements.txt`
 2. Make sure you're using the development settings `export DJANGO_SETTINGS_MODULE=api.settings_dev`
 3. Run the application with `python manage.py runserver`
+
+## Deploying to Heroku
+
+Run `git push heroku master` to create a new release on **library-api-cw** on Heroku.
