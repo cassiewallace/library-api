@@ -10,7 +10,7 @@ class BasicBookSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Book
-        fields = ['id', 'title', 'author']
+        fields = ['id', 'title', 'author', 'cover_image']
 
 class FullBookSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
