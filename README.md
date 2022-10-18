@@ -3,7 +3,7 @@
 Library API enables users to manage a set of books.
 
 ## Documentation
-- [Postman Workspace](https://www.postman.com/cassiewallace/workspace/library-api)
+- [Postman](https://www.postman.com/cassiewallace/workspace/library-api)
 
 ## Requirements
 - Python: `3.10.8`
@@ -15,8 +15,9 @@ Library API enables users to manage a set of books.
 2. Make sure you're using the development settings `export DJANGO_SETTINGS_MODULE=api.settings_dev`
 3. Run the application with `python manage.py runserver`
 
-## Deploying to Heroku
+## Deployment
+The app is deployed using [Heroku](https://heroku.com) and can be found at [https://library-api-cw.herokuapp.com/](https://library-api-cw.herokuapp.com/).
 
-This repository is set up to deploy automatically via [Heroku](https://dashboard.heroku.com/apps/library-api-cw).
+### Deploying to Heroku
 
-If needed, run `git push heroku master` to create a new release on **library-api-cw** on Heroku.
+Run `git push heroku master` to create a new release on **library-api-cw** on Heroku and kick off deployment.
