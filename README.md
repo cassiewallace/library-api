@@ -20,4 +20,4 @@ The app is deployed using [Heroku](https://heroku.com) and can be found at [http
 
 ### Deploying to Heroku
 
-Run `git push heroku master` to create a new release on **library-api-cw** on Heroku and kick off deployment.
+Run `git push heroku main` to create a new release on **library-api-cw** on Heroku and kick off deployment.
