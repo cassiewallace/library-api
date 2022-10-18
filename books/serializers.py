@@ -7,6 +7,7 @@ from books.models import Book
 
 
 class BasicBookSerializer(serializers.HyperlinkedModelSerializer):
+    cover_image = serializers.ImageField(use_url=False)
 
     class Meta:
         model = Book
@@ -16,7 +17,8 @@ class FullBookSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     checked_out_by = serializers.HyperlinkedRelatedField(view_name='user-detail',
         queryset=User.objects.all(), allow_null=True)
+    cover_image = serializers.ImageField(use_url=False)
 
     class Meta:
         model = Book
-        fields = ['id', 'title', 'author', 'owner', 'checked_out_by']
+        fields = ['id', 'title', 'author', 'owner', 'checked_out_by', 'cover_image']
