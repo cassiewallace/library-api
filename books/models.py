@@ -8,7 +8,7 @@ class Book(models.Model):
         related_name='created_books', blank=True)
     checked_out_by = models.ForeignKey('auth.User', on_delete=models.SET_NULL,
         related_name='checked_out_books', null=True, blank=True)
-    cover_image = models.URLField()
+    cover_image = models.URLField(max_length=250)
 
     class Meta:
         ordering = ['title']
